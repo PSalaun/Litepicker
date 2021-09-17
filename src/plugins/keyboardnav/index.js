@@ -150,32 +150,13 @@ Litepicker.add('keyboardnav', {
 
         case 'Escape':
           picker.hide();
+          this.options.nextFocusElement.focus();
           break;
       }
     }
 
     function onMouseDown(evt) {
       picker.isMouseDown = true;
-    }
-
-    function onFocus(evt) {
-      if (picker.isMouseDown) {
-        picker.isMouseDown = false;
-        return;
-      }
-
-      if (this.options.inlineMode) {
-        return;
-      }
-
-      if (this.isShowning()) {
-        return;
-      }
-
-      this.show(evt.target);
-
-      const focusEl = this.ui.querySelector(`[tabindex="${picker.options.keyboardnav.firstTabIndex}"]`);
-      focusEl.focus();
     }
 
     function onBlur(evt) {
@@ -188,7 +169,7 @@ Litepicker.add('keyboardnav', {
         const activeElement = document.activeElement;
   
         if (!this.ui.contains(activeElement)) {
-          this.nextFocusElement = activeElement;
+          this.nextFocusElement = this.options.nextFocusElement;
         }
       });
     }
@@ -199,11 +180,9 @@ Litepicker.add('keyboardnav', {
 
     if (options.element instanceof HTMLElement) {
       options.element.addEventListener('mousedown', onMouseDown.bind(picker), true);
-      options.element.addEventListener('focus', onFocus.bind(picker), true);
     }
     if (options.elementEnd instanceof HTMLElement) {
       options.elementEnd.addEventListener('mousedown', onMouseDown.bind(picker), true);
-      options.elementEnd.addEventListener('focus', onFocus.bind(picker), true);
     }
 
     if (options.element instanceof HTMLElement) {

@@ -31,6 +31,7 @@ export class LPCore extends EventEmitter {
     endDate: null,
     zIndex: 9999,
     position: 'auto',
+    nextFocusElement: null,
 
     selectForward: false,
     selectBackward: false,

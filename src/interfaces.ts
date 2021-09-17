@@ -70,6 +70,8 @@ export interface ILPConfiguration {
   tooltipNumber?: (totalDays: number) => number;
   plugins?: string[];
   position?: string;
+  nextFocusElement?: HTMLElement | HTMLInputElement | null;
+  
 
   // Plugins
   ranges?: {
